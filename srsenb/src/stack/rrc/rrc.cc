@@ -797,6 +797,7 @@ void rrc::config_mac()
  *
  * @return The number of SIBs messages per CC
  */
+ // ###BOOKMARK####: SIB generation
 uint32_t rrc::generate_sibs()
 {
   // nof_messages includes SIB2 by default, plus all configured SIBs
@@ -1168,6 +1169,7 @@ void rrc::ue::parse_ul_dcch(uint32_t lcid, srslte::unique_byte_buffer_t pdu)
   }
 }
 
+/// ###BOOKMARK###: RRC MSG 3 - handle
 void rrc::ue::handle_rrc_con_req(rrc_conn_request_s* msg)
 {
   if (not parent->s1ap->is_mme_connected()) {
@@ -1487,6 +1489,7 @@ void rrc::ue::send_connection_reject()
   send_dl_ccch(&dl_ccch_msg);
 }
 
+// ###BOOKMARK###: RRC MSG 4
 void rrc::ue::send_connection_setup(bool is_setup)
 {
   dl_ccch_msg_s dl_ccch_msg;
@@ -1505,7 +1508,7 @@ void rrc::ue::send_connection_setup(bool is_setup)
     rr_cfg = &dl_ccch_msg.msg.c1().rrc_conn_reest().crit_exts.c1().rrc_conn_reest_r8().rr_cfg_ded;
   }
 
-  // Add SRB1 to cfg
+  // Add SRB1 to cfg == srb-ToAddModList
   rr_cfg->srb_to_add_mod_list_present = true;
   rr_cfg->srb_to_add_mod_list.resize(1);
   rr_cfg->srb_to_add_mod_list[0].srb_id            = 1;
@@ -2113,6 +2116,7 @@ void rrc::ue::send_connection_reconf_new_bearer(const asn1::s1ap::erab_to_be_set
   send_dl_dcch(&dl_dcch_msg, std::move(pdu));
 }
 
+// ###BOOKMARK###: Security mode command RRC forwarder
 void rrc::ue::send_security_mode_command()
 {
   dl_dcch_msg_s        dl_dcch_msg;

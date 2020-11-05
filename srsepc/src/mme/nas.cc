@@ -918,6 +918,7 @@ bool nas::handle_attach_request(srslte::byte_buffer_t* nas_rx)
   return true;
 }
 
+// ###BOOKMARK###: calls security mode command
 bool nas::handle_authentication_response(srslte::byte_buffer_t* nas_rx)
 {
   srslte::byte_buffer_t*                        nas_tx;
@@ -1283,6 +1284,7 @@ bool nas::pack_authentication_reject(srslte::byte_buffer_t* nas_buffer)
   return true;
 }
 
+// ###BOOKMARK###: Creation of security mode command
 bool nas::pack_security_mode_command(srslte::byte_buffer_t* nas_buffer)
 {
   m_nas_log->info("Packing Security Mode Command\n");

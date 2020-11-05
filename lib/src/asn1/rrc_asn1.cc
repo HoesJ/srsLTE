@@ -45010,6 +45010,7 @@ void rrc_conn_reject_r8_ies_s::to_json(json_writer& j) const
   j.end_obj();
 }
 
+// ###BOOKMARK###: RRC connection setup packing, transaction ID and critical extensions present located elsewhere
 // RRCConnectionSetup-r8-IEs ::= SEQUENCE
 SRSASN_CODE rrc_conn_setup_r8_ies_s::pack(bit_ref& bref) const
 {
