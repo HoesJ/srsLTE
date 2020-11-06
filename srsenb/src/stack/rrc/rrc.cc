@@ -2293,16 +2293,20 @@ void rrc::ue::send_dl_ccch(dl_ccch_msg_s* dl_ccch_msg)
     pdu->N_bytes = 1u + (uint32_t)bref.distance_bytes(pdu->msg);
 
     // ###CHANGE###: introduce error in byte buffer
-    #include <cstdio>
-    printf("%s","Before changing buffer\n");
-    for (uint i = 0; i < pdu->N_bytes; i++) {
-      printf("%x", pdu->buffer[i]);
-    }
-    printf("%s","\nAfter changing buffer\n");
+    parent->rrc_log->debug("###CHANGE###");
+    parent->rrc_log->debug("before altering");
+    char str[1000];
+    for (uint i = 0; i < pdu->N_bytes; i++)
+      str[i] = pdu->buffer[i];
+    str[i+1] = '\0';
+    parent->rrc_log->debug("%s", str);
+    parent->rrc_log->debug("After altering");
     pdu->buffer[5] = 0xff;
-    for (uint i = 0; i < pdu->N_bytes; i++) {
-      printf("%x", pdu->buffer[i]);
-    }
+    for (uint i = 0; i < pdu->N_bytes; i++)
+      str[i] = pdu->buffer[i];
+    str[i+1] = '\0';
+    parent->rrc_log->debug("%s", str);
+    parent->rrc_log->debug("###ENDCHANGE###");
     //
 
 
