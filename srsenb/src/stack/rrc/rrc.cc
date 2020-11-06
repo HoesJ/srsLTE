@@ -2293,15 +2293,15 @@ void rrc::ue::send_dl_ccch(dl_ccch_msg_s* dl_ccch_msg)
     pdu->N_bytes = 1u + (uint32_t)bref.distance_bytes(pdu->msg);
 
     // ###CHANGE###: introduce error in byte buffer
-    #include <iostream>
-    std::cout << "Before changing buffer\n"
+    #include <cstdio>
+    printf("%s","Before changing buffer\n");
     for (uint i = 0; i < pdu->N_bytes; i++) {
-      std::cout << std::hex << pdu->buffer[i];
+      printf("%x", pdu->buffer[i]);
     }
-    std::cout << "\nAfter changing buffer\n"
+    printf("%s","\nAfter changing buffer\n");
     pdu->buffer[5] = 0xff;
     for (uint i = 0; i < pdu->N_bytes; i++) {
-      std::cout << std::hex << pdu->buffer[i];
+      printf("%x", pdu->buffer[i]);
     }
     //
 
