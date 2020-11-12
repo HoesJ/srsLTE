@@ -2293,15 +2293,15 @@ void rrc::ue::send_dl_ccch(dl_ccch_msg_s* dl_ccch_msg)
     pdu->N_bytes = 1u + (uint32_t)bref.distance_bytes(pdu->msg);
 
     // ###CHANGE###: introduce error in byte buffer
-    parent->rrc_log->debug("###CHANGE###");
+    // parent->rrc_log->debug("###CHANGE###");
 
-    parent->rrc_log->debug_hex(pdu->msg, pdu->N_bytes, "before altering");
-    parent->rrc_log->debug_hex(pdu->buffer, pdu->N_bytes, " ");
-    pdu->buffer[5] = 0xff;
-    parent->rrc_log->debug_hex(pdu->msg, pdu->N_bytes, "After altering");
-    parent->rrc_log->debug_hex(pdu->buffer, pdu->N_bytes, " ");
+    // parent->rrc_log->debug_hex(pdu->msg, pdu->N_bytes, "before altering");
+    // parent->rrc_log->debug_hex(pdu->buffer, pdu->N_bytes, " ");
+    // pdu->msg[5] = 0xff;
+    // parent->rrc_log->debug_hex(pdu->msg, pdu->N_bytes, "After altering");
+    // parent->rrc_log->debug_hex(pdu->buffer, pdu->N_bytes, " ");
 
-    parent->rrc_log->debug("###END CHANGE###");
+    // parent->rrc_log->debug("###END CHANGE###");
     //
 
 
