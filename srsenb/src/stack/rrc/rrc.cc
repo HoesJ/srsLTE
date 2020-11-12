@@ -2295,18 +2295,17 @@ void rrc::ue::send_dl_ccch(dl_ccch_msg_s* dl_ccch_msg)
     // ###CHANGE###: introduce error in byte buffer
     parent->rrc_log->debug("###CHANGE###");
     parent->rrc_log->debug("before altering");
-    char str[1000];
-    for (uint i = 0; i < pdu->N_bytes; i++)
-      str[i] = pdu->buffer[i];
-    str[i+1] = '\0';
-    parent->rrc_log->debug("%s", str);
+
+    parent->rrc_log->debug_hex(pdu->msg, pdu->N_bytes);
+    parent->rrc_log->debug_hex(pdu->buffer, pdu->N_bytes);
+
     parent->rrc_log->debug("After altering");
     pdu->buffer[5] = 0xff;
-    for (uint i = 0; i < pdu->N_bytes; i++)
-      str[i] = pdu->buffer[i];
-    str[i+1] = '\0';
-    parent->rrc_log->debug("%s", str);
-    parent->rrc_log->debug("###ENDCHANGE###");
+    
+    parent->rrc_log->debug_hex(pdu->msg, pdu->N_bytes);
+    parent->rrc_log->debug_hex(pdu->buffer, pdu->N_bytes);
+
+    parent->rrc_log->debug("###END CHANGE###");
     //
 
 
